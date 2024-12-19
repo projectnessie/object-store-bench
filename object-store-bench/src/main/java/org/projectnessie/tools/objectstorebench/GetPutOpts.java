@@ -114,9 +114,7 @@ public class GetPutOpts {
     public Optional<Duration> connectionAcquisitionTimeout = Optional.empty();
 
     // AwsApache
-    @Option(
-        names = {"--http-expect-continue"},
-        negatable = true)
+    @Option(names = {"--http-expect-continue"})
     public Optional<Boolean> expectContinueEnabled = Optional.empty();
 
     // AwsNetty
@@ -161,9 +159,7 @@ public class GetPutOpts {
   }
 
   public static class GcpOpts {
-    @Option(
-        names = {"--gcp-grpc"},
-        negatable = true)
+    @Option(names = {"--gcp-grpc"})
     public boolean grpc;
 
     @Option(names = {"--gcp-project-id"})
@@ -172,9 +168,7 @@ public class GetPutOpts {
     @Option(names = {"--gcp-client-lib-token"})
     public Optional<String> clientLibToken = Optional.empty();
 
-    @Option(
-        names = {"--gcp-auth"},
-        negatable = true)
+    @Option(names = {"--gcp-auth"})
     public Optional<Boolean> auth = Optional.empty();
 
     @Option(names = {"--gcp-oauth-token"})

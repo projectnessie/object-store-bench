@@ -21,16 +21,22 @@ import static java.util.concurrent.Executors.newCachedThreadPool;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.util.Optional;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Consumer;
 import org.projectnessie.tools.objectstorebench.AbstractGetPut;
 import org.projectnessie.tools.objectstorebench.GetPutOpts;
 import org.projectnessie.tools.objectstorebench.RequestStats;
-import org.projectnessie.tools.objectstorebench.RequestStats.TimeToFirstByteInputStream;
 import org.projectnessie.tools.objectstorebench.time.TimerInstance;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.awscore.exception.AwsErrorDetails;
@@ -143,11 +149,105 @@ public class AwsAsyncGetPut extends AbstractGetPut {
     TimerInstance timer = clock.newTimer();
 
     AsyncRequestBody requestBody =
-        AsyncRequestBody.fromInputStream(
-            new TimeToFirstByteInputStream(
-                data, () -> stats.firstByteMicros(timer.elapsedMicros())),
-            dataSize,
-            executor);
+        new AsyncRequestBody() {
+          private long outstandingDemand;
+          private volatile boolean done;
+          private final Lock lock = new ReentrantLock();
+          private final Condition demandChanged = lock.newCondition();
+
+          @Override
+          public Optional<Long> contentLength() {
+            return Optional.of(dataSize);
+          }
+
+          @Override
+          public void subscribe(Subscriber<? super ByteBuffer> subscriber) {
+            Subscription subscription =
+                new Subscription() {
+                  @Override
+                  public void request(long n) {
+                    if (done) {
+                      return;
+                    }
+
+                    if (n < 1) {
+                      subscriber.onError(new IllegalArgumentException());
+                      return;
+                    }
+                    lock.lock();
+                    try {
+                      if (Long.MAX_VALUE - outstandingDemand < n) {
+                        outstandingDemand = Long.MAX_VALUE;
+                      } else {
+                        outstandingDemand += n;
+                      }
+                      demandChanged.signal();
+                    } finally {
+                      lock.unlock();
+                    }
+                  }
+
+                  @Override
+                  public void cancel() {
+                    lock.lock();
+                    try {
+                      done = true;
+                      demandChanged.signal();
+                    } finally {
+                      lock.unlock();
+                    }
+                  }
+                };
+
+            executor.submit(
+                () -> {
+                  try {
+                    while (!done) {
+                      lock.lock();
+                      try {
+                        if (outstandingDemand == 0L) {
+                          demandChanged.await();
+                        }
+                        if (done) {
+                          break;
+                        }
+                        if (outstandingDemand <= 0L) {
+                          continue;
+                        }
+                        if (outstandingDemand != Long.MAX_VALUE) {
+                          outstandingDemand--;
+                        }
+                      } finally {
+                        lock.unlock();
+                      }
+
+                      byte[] buf = new byte[1024 * 1024];
+                      int rd = data.read(buf, 0, buf.length);
+                      if (rd < 0) {
+                        done = true;
+                        subscriber.onComplete();
+                        break;
+                      }
+                      if (rd > 0) {
+                        subscriber.onNext(ByteBuffer.wrap(buf, 0, rd));
+                      }
+                    }
+                  } catch (Exception e) {
+                    done = true;
+                    subscriber.onError(e);
+                  }
+                });
+
+            subscriber.onSubscribe(subscription);
+          }
+        };
+
+    //    AsyncRequestBody requestBody =
+    //        AsyncRequestBody.fromInputStream(
+    //            new RequestStats.TimeToFirstByteInputStream(
+    //                data, () -> stats.firstByteMicros(timer.elapsedMicros())),
+    //            dataSize,
+    //            executor);
 
     return client
         .putObject(rb, requestBody)

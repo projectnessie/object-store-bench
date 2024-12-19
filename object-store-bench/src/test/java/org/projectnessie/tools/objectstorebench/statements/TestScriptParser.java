@@ -36,8 +36,10 @@ public class TestScriptParser {
 
   static Stream<Arguments> parseScript() {
     return Stream.of(
-        arguments("""
-            """, Script.builder().build()),
+        arguments(
+            """
+            """,
+            Script.builder().build()),
         arguments(
             "PUT 250 OBJECTS USING NAMING STRATEGY RANDOM PREFIX",
             Script.builder()

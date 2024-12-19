@@ -68,7 +68,8 @@ public class Benchmark implements Callable<Integer> {
           err.flush();
         };
 
-    outConsumer.accept("""
+    outConsumer.accept(
+        """
 
 @|bold,italic Initializing benchmark...|@
 """);

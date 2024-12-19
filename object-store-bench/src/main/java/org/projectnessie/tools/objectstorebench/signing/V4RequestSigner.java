@@ -257,7 +257,7 @@ final class V4RequestSigner implements RequestSigner {
             entries.add(Map.entry("content-length", singletonList(realContentLength)));
             break;
           }
-          // fall-through
+        // fall-through
         default:
           entries.add(Map.entry(lowerCaseName, header.getValue()));
       }
