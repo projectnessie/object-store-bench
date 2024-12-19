@@ -59,7 +59,9 @@ out/
 # gradle
 .gradle/
 build/
-!gradle-wrapper.jar
+# Ignore Gradle wrapper jar file
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper-*.sha256
 
 #jEnv, see https://github.com/jenv/jenv
 .java-version
