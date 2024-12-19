@@ -55,7 +55,6 @@ dependencies {
   implementation("io.quarkus:quarkus-micrometer")
 
   implementation(libs.slf4j.api)
-  runtimeOnly(libs.logback.classic)
 
   compileOnly(libs.immutables.builder)
   compileOnly(libs.immutables.value.annotations)
