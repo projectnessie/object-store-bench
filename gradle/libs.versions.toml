@@ -1,7 +1,7 @@
 # Nessie dependencies, without the dependencies needed by build-logic/
 
 [versions]
-antlr4 = "4.13.1"
+antlr4 = "4.13.2"
 checkstyle = "10.21.0"
 errorprone = "2.36.0"
 errorproneSlf4j = "0.1.28"
