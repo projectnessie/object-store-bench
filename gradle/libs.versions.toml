@@ -65,6 +65,6 @@ testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version
 vertx-core = { module = "io.vertx:vertx-core", version = "4.5.11" }
 
 [plugins]
-errorprone = { id = "net.ltgt.errorprone", version = "3.1.0" }
+errorprone = { id = "net.ltgt.errorprone", version = "4.1.0" }
 protobuf = { id = "com.google.protobuf", version = "0.9.4" }
 quarkus = { id = "io.quarkus", version.ref = "quarkusPlugin" }
