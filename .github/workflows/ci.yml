@@ -44,11 +44,11 @@ jobs:
           location="mirror.gcr.io"
           !
           sudo mv docker-io-mirror.conf /etc/containers/registries.conf.d/
-  
+
           echo "::group::Added docker.io mirror"
           cat /etc/containers/registries.conf.d/docker-io-mirror.conf 
           echo "::endgroup::"
-  
+
           echo "::group::Restarting Docker"
           echo "ps auxww | grep docker before restart"
           sudo ps auxww | grep docker
@@ -58,7 +58,7 @@ jobs:
           echo "ps auxww | grep docker after restart"
           sudo ps auxww | grep docker
           echo "::endgroup::"
-  
+
           echo "::group::docker info"
           docker info
           echo "::endgroup::"
