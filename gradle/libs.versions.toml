@@ -11,7 +11,7 @@ jandex = "3.2.3"
 junit = "5.11.4"
 mockito="5.15.2"
 picocli = "4.7.6"
-quarkusPlatform = "3.17.5"
+quarkusPlatform = "3.17.6"
 quarkusPlugin = "3.17.6"
 slf4j = "2.0.16"
 
