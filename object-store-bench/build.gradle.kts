@@ -137,8 +137,8 @@ tasks.named<AntlrTask>("generateGrammarSource").configure {
       },
       mapOf(
         "org.antlr.v4.runtime." to "org.projectnessie.shaded.org.antlr.v4.runtime.",
-        "// PACKAGE_PLACEHOLDER" to "package org.projectnessie.tools.objectstorebench.syntax;"
-      )
+        "// PACKAGE_PLACEHOLDER" to "package org.projectnessie.tools.objectstorebench.syntax;",
+      ),
     )
   )
 }

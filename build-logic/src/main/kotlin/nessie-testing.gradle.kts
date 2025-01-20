@@ -28,24 +28,24 @@ plugins {
 
 gradle.sharedServices.registerIfAbsent(
   "intTestParallelismConstraint",
-  TestingParallelismHelper::class.java
+  TestingParallelismHelper::class.java,
 ) {
   val intTestParallelism =
     Integer.getInteger(
       "nessie.intTestParallelism",
-      (Runtime.getRuntime().availableProcessors() / 4).coerceAtLeast(1)
+      (Runtime.getRuntime().availableProcessors() / 4).coerceAtLeast(1),
     )
   maxParallelUsages = intTestParallelism
 }
 
 gradle.sharedServices.registerIfAbsent(
   "testParallelismConstraint",
-  TestingParallelismHelper::class.java
+  TestingParallelismHelper::class.java,
 ) {
   val intTestParallelism =
     Integer.getInteger(
       "nessie.testParallelism",
-      (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1)
+      (Runtime.getRuntime().availableProcessors() / 2).coerceAtLeast(1),
     )
   maxParallelUsages = intTestParallelism
 }
@@ -84,7 +84,7 @@ tasks.withType<Test>().configureEach {
         listOf(
           "-Dquarkus.log.level=${testLogLevel("INFO")}",
           "-Dquarkus.log.console.level=${testLogLevel("INFO")}",
-          "-Dhttp.access.log.level=${testLogLevel()}"
+          "-Dhttp.access.log.level=${testLogLevel()}",
         )
       }
     )
