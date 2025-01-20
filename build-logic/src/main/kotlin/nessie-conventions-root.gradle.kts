@@ -48,7 +48,7 @@ if (System.getProperty("idea.sync.active").toBoolean()) {
             // Do not index the .mvn folders
             nessieRootProjectDir.resolve(".mvn"),
             // And more...
-            nessieRootProjectDir.resolve(".idea")
+            nessieRootProjectDir.resolve(".idea"),
           )
       allprojects.map { prj -> prj.layout.buildDirectory.asFile.get() }
     }
