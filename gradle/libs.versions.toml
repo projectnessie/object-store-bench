@@ -13,7 +13,7 @@ mockito="5.15.2"
 picocli = "4.7.6"
 quarkusPlatform = "3.17.8"
 quarkusPlugin = "3.17.7"
-slf4j = "2.0.16"
+slf4j = "2.0.17"
 
 [bundles]
 junit-testing = ["assertj-core", "mockito-core", "mockito-junit-jupiter", "junit-jupiter-api", "junit-jupiter-params"]
