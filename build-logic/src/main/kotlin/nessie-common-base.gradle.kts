@@ -83,7 +83,7 @@ if (!System.getProperty("idea.sync.active").toBoolean()) {
         scalafmt()
         licenseHeaderFile(
           rootProject.file("codestyle/copyright-header-java.txt"),
-          "^(package|import) .*$"
+          "^(package|import) .*$",
         )
         target("src/**/scala/**")
         targetExclude("build-logic/build/**")
