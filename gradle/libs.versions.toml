@@ -12,7 +12,7 @@ junit = "5.12.1"
 mockito="5.16.1"
 picocli = "4.7.6"
 quarkusPlatform = "3.17.8"
-quarkusPlugin = "3.17.7"
+quarkusPlugin = "3.21.0"
 slf4j = "2.0.17"
 
 [bundles]
