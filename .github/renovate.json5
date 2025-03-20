@@ -76,6 +76,18 @@
       extends: ["schedule:weekly"],
     },
 
+    // Quarkus platform + plugin together
+    {
+      groupName: "Quarkus Platform and Group",
+      matchManagers: ["gradle"],
+      matchPackageNames: [
+        "io.quarkus.platform:quarkus-bom",
+        "io.quarkus.platform:quarkus-amazon-services-bom",
+        "io.quarkus.platform:quarkus-google-cloud-services-bom",
+        "io.quarkus:io.quarkus.gradle.plugin",
+      ],
+    },
+
     // Special versioning for Minio
     {
       matchManagers: ["dockerfile", "devcontainer", "docker-compose"],
