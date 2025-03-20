@@ -11,8 +11,7 @@ jandex = "3.2.3"
 junit = "5.12.1"
 mockito="5.16.1"
 picocli = "4.7.6"
-quarkusPlatform = "3.17.8"
-quarkusPlugin = "3.17.7"
+quarkus = "3.17.8"
 slf4j = "2.0.17"
 
 [bundles]
@@ -57,7 +56,7 @@ mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
 picocli = { module = "info.picocli:picocli-codegen", version.ref = "picocli" }
 picocli-codegen = { module = "info.picocli:picocli-codegen", version.ref = "picocli" }
-quarkus-bom = { module = "io.quarkus.platform:quarkus-bom", version.ref = "quarkusPlatform" }
+quarkus-bom = { module = "io.quarkus.platform:quarkus-bom", version.ref = "quarkus" }
 slf4j-api = {  module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-jcl-over-slf4j = { module = "org.slf4j:jcl-over-slf4j", version.ref = "slf4j" }
 slf4j-log4j-over-slf4j = { module = "org.slf4j:log4j-over-slf4j", version.ref = "slf4j" }
@@ -67,4 +66,4 @@ vertx-core = { module = "io.vertx:vertx-core", version = "4.5.13" }
 [plugins]
 errorprone = { id = "net.ltgt.errorprone", version = "4.1.0" }
 protobuf = { id = "com.google.protobuf", version = "0.9.4" }
-quarkus = { id = "io.quarkus", version.ref = "quarkusPlugin" }
+quarkus = { id = "io.quarkus", version.ref = "quarkus" }
