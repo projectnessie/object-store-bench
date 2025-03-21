@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import org.gradle.api.attributes.TestSuiteType
 import org.gradle.api.plugins.jvm.JvmTestSuite
 import org.gradle.api.services.BuildService
 import org.gradle.api.services.BuildServiceParameters
@@ -116,8 +115,6 @@ testing {
 
     register<JvmTestSuite>("intTest") {
       useJUnitJupiter(libsRequiredVersion("junit"))
-
-      testType = TestSuiteType.INTEGRATION_TEST
 
       dependencies { implementation.add(project()) }
 
