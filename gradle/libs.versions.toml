@@ -11,7 +11,7 @@ jandex = "3.2.3"
 junit = "5.12.1"
 mockito="5.16.1"
 picocli = "4.7.6"
-quarkus = "3.20.0"
+quarkus = "3.21.0"
 slf4j = "2.0.17"
 
 [bundles]
