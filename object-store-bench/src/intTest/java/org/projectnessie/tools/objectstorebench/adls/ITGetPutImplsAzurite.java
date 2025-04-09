@@ -42,7 +42,7 @@ import org.projectnessie.tools.objectstorebench.GetPutOpts;
 @QuarkusTest
 @TestProfile(ITGetPutImplsAzurite.AzuriteResourceLifecycleManager.AzuriteTestProfile.class)
 @Disabled(
-    """
+"""
 It would be nice to have this integration test, but Azurite does NOT support ADLS (Gen2) yet. This results in request
 errors like 'Incoming URL doesn't match any of swagger defined request patterns.' in the Azurite debug logs.
 """)

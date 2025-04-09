@@ -69,7 +69,7 @@ public class Benchmark implements Callable<Integer> {
         };
 
     outConsumer.accept(
-        """
+"""
 
 @|bold,italic Initializing benchmark...|@
 """);
