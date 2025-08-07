@@ -20,7 +20,7 @@ junit-testing = ["assertj-core", "mockito-core", "mockito-junit-jupiter", "junit
 [libraries]
 antlr-antlr4 = { module = "org.antlr:antlr4", version.ref = "antlr4" }
 antlr-antlr4-runtime = { module = "org.antlr:antlr4-runtime", version.ref = "antlr4" }
-assertj-core = { module = "org.assertj:assertj-core", version = "3.27.3" }
+assertj-core = { module = "org.assertj:assertj-core", version = "3.27.4" }
 awssdk-bom = { module = "software.amazon.awssdk:bom", version = "2.32.9" }
 azuresdk-bom = { module = "com.azure:azure-sdk-bom", version = "1.2.37" }
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
