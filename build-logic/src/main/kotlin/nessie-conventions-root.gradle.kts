@@ -16,6 +16,7 @@
 
 // Nessie root project
 
+import java.util.Properties
 import org.jetbrains.gradle.ext.ActionDelegationConfig
 import org.jetbrains.gradle.ext.copyright
 import org.jetbrains.gradle.ext.delegateActions
@@ -77,7 +78,7 @@ if (System.getProperty("idea.sync.active").toBoolean()) {
             .resolve("gradle.properties")
             .reader()
             .use {
-              val rules = java.util.Properties()
+              val rules = Properties()
               rules.load(it)
               rules
             }

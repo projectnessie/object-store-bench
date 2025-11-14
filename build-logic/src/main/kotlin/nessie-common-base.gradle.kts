@@ -14,27 +14,25 @@
  * limitations under the License.
  */
 
-import com.github.vlsi.jandex.JandexBuildAction
-import com.github.vlsi.jandex.JandexProcessResources
+import org.kordamp.gradle.plugin.jandex.JandexExtension
+import org.kordamp.gradle.plugin.jandex.JandexPlugin
 
 plugins {
-  id("com.github.vlsi.jandex")
+  id("org.kordamp.gradle.jandex")
   id("com.diffplug.spotless")
 }
 
-jandex { toolVersion = libsRequiredVersion("jandex") }
-
-val sourceSets: SourceSetContainer? by project
-
-sourceSets?.withType(SourceSet::class.java)?.configureEach {
-  val sourceSet = this
-  if ("main" != sourceSet.name) {
-    val jandexTaskName = sourceSet.getTaskName("process", "jandexIndex")
-    tasks.named(jandexTaskName, JandexProcessResources::class.java).configure {
-      // No Jandex for non-main
-      jandexBuildAction = JandexBuildAction.NONE
-      enabled = false
-    }
+plugins.withType<JandexPlugin>().configureEach {
+  extensions.getByType(JandexExtension::class).run {
+    version =
+      versionCatalogs
+        .named("libs")
+        .findLibrary("jandex")
+        .orElseThrow { GradleException("jandex version not found in libs.versions.toml") }
+        .get()
+        .version
+    // https://smallrye.io/jandex/jandex/3.4.0/index.html#persistent_index_format_versions
+    indexVersion = 12
   }
 }
 
