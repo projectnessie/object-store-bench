@@ -25,3 +25,5 @@ plugins {
 }
 
 tasks.withType<JavaCompile>().configureEach { options.release = 21 }
+
+tasks.named("compileJava") { dependsOn("compileQuarkusGeneratedSourcesJava") }
