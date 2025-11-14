@@ -59,6 +59,7 @@ out/
 # gradle
 .gradle/
 build/
+build-logic/.kotlin/
 # Ignore Gradle wrapper jar file
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper-*.sha256
