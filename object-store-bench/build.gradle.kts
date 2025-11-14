@@ -164,4 +164,4 @@ if (Os.isFamily(Os.FAMILY_MAC) && System.getenv("CI") != null) {
 
 tasks.withType<JavaCompile>().configureEach { options.release.set(21) }
 
-tasks.named("quarkusDependenciesBuild") { dependsOn("processJandexIndex") }
+tasks.named("quarkusDependenciesBuild") { dependsOn("jandex") }
