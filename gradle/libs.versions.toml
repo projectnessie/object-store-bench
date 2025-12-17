@@ -64,5 +64,5 @@ vertx-core = { module = "io.vertx:vertx-core", version = "5.0.6" }
 
 [plugins]
 errorprone = { id = "net.ltgt.errorprone", version = "4.3.0" }
-protobuf = { id = "com.google.protobuf", version = "0.9.5" }
+protobuf = { id = "com.google.protobuf", version = "0.9.6" }
 quarkus = { id = "io.quarkus", version.ref = "quarkus" }
