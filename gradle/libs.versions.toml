@@ -10,7 +10,7 @@ immutables = "2.12.0"
 junit = "6.0.1"
 mockito="5.21.0"
 picocli = "4.7.7"
-quarkus = "3.30.4"
+quarkus = "3.30.5"
 slf4j = "2.0.17"
 
 [bundles]
