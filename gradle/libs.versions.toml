@@ -60,7 +60,7 @@ slf4j-api = {  module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-jcl-over-slf4j = { module = "org.slf4j:jcl-over-slf4j", version.ref = "slf4j" }
 slf4j-log4j-over-slf4j = { module = "org.slf4j:log4j-over-slf4j", version.ref = "slf4j" }
 testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version = "2.0.3" }
-vertx-core = { module = "io.vertx:vertx-core", version = "5.0.7" }
+vertx-core = { module = "io.vertx:vertx-core", version = "5.0.8" }
 
 [plugins]
 errorprone = { id = "net.ltgt.errorprone", version = "5.0.0" }
