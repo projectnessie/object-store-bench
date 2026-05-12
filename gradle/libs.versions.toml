@@ -11,7 +11,7 @@ junit = "6.0.3"
 mockito="5.23.0"
 picocli = "4.7.7"
 quarkus = "3.35.2"
-slf4j = "2.0.17"
+slf4j = "2.0.18"
 
 [bundles]
 junit-testing = ["assertj-core", "mockito-core", "mockito-junit-jupiter", "junit-jupiter-api", "junit-jupiter-params"]
