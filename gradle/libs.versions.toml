@@ -2,7 +2,7 @@
 
 [versions]
 antlr4 = "4.13.2"
-checkstyle = "13.11.0"
+checkstyle = "14.0.0"
 errorprone = "2.50.0"
 errorproneSlf4j = "0.1.29"
 googleJavaFormat = "1.36.1"
